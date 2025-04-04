@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI
 from pydantic import BaseModel
 from textblob import TextBlob
 
@@ -8,13 +8,8 @@ class ChatRequest(BaseModel):
     user_id: str
     message: str
 
-@app.get("/")  # 👈 ADD THIS
-def root():
-    return {"message": "Hello! Chatbot is running 🚀"}
-
 @app.post("/chat")
-async def chat(request: Request):
-    data = await request.json()
+async def chat(request: ChatRequest):  # Accept ChatRequest object
     return {"message": "This is a test response!"}
 
 if __name__ == "__main__":
