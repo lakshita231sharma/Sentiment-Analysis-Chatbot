@@ -7,6 +7,9 @@ app = FastAPI()
 class ChatRequest(BaseModel):
     user_id: str
     message: str
+@app.get("/")  # 👈 ADD THIS
+def root():
+    return {"message": "Hello! Chatbot is running 🚀"}
 
 @app.post("/chat")
 async def chat(request: ChatRequest):
